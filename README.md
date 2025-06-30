@@ -25,11 +25,6 @@ A powerful PHP-based spam detection system that combines traditional dictionary-
 composer require php-ai/php-ml
 ```
 
-2. Include the class in your project:
-```php
-require_once 'vendor/autoload.php';
-use JBTools\SpamDetector\EnhancedSpamDoctor;
-```
 
 ## Directory Structure
 
@@ -38,7 +33,7 @@ project/
 ├── src/
 │   └── JBTools/
 │       └── SpamDetector/
-│           └── EnhancedSpamDoctor.php
+│           └── EnhancedSpamDetector.php
 ├── data/
 │   ├── spam_data.txt          # Dictionary of spam keywords
 │   ├── training_data.json     # ML training dataset

@@ -1,6 +1,6 @@
 <?php
 /**
- * Enhanced Spam Doctor with Machine Learning
+ * Enhanced Spam Detector with Machine Learning
  * Uses PHP-ML library for spam detection with AI models
  * 
  * Installation: composer require php-ai/php-ml
@@ -19,10 +19,10 @@ use Phpml\Pipeline;
 use Phpml\ModelManager;
 
 /**
- * Class EnhancedSpamDoctor
+ * Class EnhancedSpamDetector
  * Machine Learning powered spam detection
  */
-class EnhancedSpamDoctor
+class EnhancedSpamDetector
 {
     private $spamDictionary;
     private $trainingDataFile;

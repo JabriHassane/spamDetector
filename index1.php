@@ -1,40 +1,40 @@
 <?php
 /**
- * Usage Example for Enhanced Spam Doctor with Machine Learning
+ * Usage Example for Enhanced Spam Detector with Machine Learning
  */
 
 require_once __DIR__ . '/spamAIdetector/spamDetector.php';
 
 require_once 'vendor/autoload.php';
-use JBTools\SpamDetector\EnhancedSpamDoctor;
+use JBTools\SpamDetector\EnhancedSpamDetector;
 
 
 try {
-    // Initialize the enhanced spam doctor with ML capabilities
-    $spamDoctor = new EnhancedSpamDoctor('naive_bayes'); // or 'svm'
+    // Initialize the enhanced spam detector with ML capabilities
+    $spamDetector = new EnhancedSpamDetector('naive_bayes'); // or 'svm'
     
     // Example 1: Basic spam detection
     $testText = "URGENT! You have won $1000000! Click here now to claim your prize!";
-    $spamDoctor->check($testText);
+    $spamDetector->check($testText);
     
     echo "=== Basic Spam Detection ===\n";
     echo "Text: $testText\n";
-    echo "Is Spam (ML): " . ($spamDoctor->isSpam() ? 'YES' : 'NO') . "\n";
-    echo "Spam Probability: " . round($spamDoctor->getSpamProbability() * 100, 2) . "%\n";
-    echo "Combined Score: " . round($spamDoctor->getSpamScore() * 100, 2) . "%\n";
-    echo "Traditional Spam Items Found: " . count($spamDoctor->getSpamItems()) . "\n";
-    echo "Highlighted Text: " . $spamDoctor->getHighlighted() . "\n\n";
+    echo "Is Spam (ML): " . ($spamDetector->isSpam() ? 'YES' : 'NO') . "\n";
+    echo "Spam Probability: " . round($spamDetector->getSpamProbability() * 100, 2) . "%\n";
+    echo "Combined Score: " . round($spamDetector->getSpamScore() * 100, 2) . "%\n";
+    echo "Traditional Spam Items Found: " . count($spamDetector->getSpamItems()) . "\n";
+    echo "Highlighted Text: " . $spamDetector->getHighlighted() . "\n\n";
     
     // Example 2: HTML content detection
     $htmlContent = '<p>Congratulations! <strong>You are our lucky winner!</strong> 
                     <a href="#">Click here for FREE money!</a></p>';
-    $spamDoctor->check($htmlContent, true);
+    $spamDetector->check($htmlContent, true);
     
     echo "=== HTML Content Detection ===\n";
     echo "HTML: $htmlContent\n";
-    echo "Is Spam: " . ($spamDoctor->isSpam() ? 'YES' : 'NO') . "\n";
-    echo "Spam Probability: " . round($spamDoctor->getSpamProbability() * 100, 2) . "%\n";
-    echo "Highlighted HTML: " . $spamDoctor->getHighlighted(true) . "\n\n";
+    echo "Is Spam: " . ($spamDetector->isSpam() ? 'YES' : 'NO') . "\n";
+    echo "Spam Probability: " . round($spamDetector->getSpamProbability() * 100, 2) . "%\n";
+    echo "Highlighted HTML: " . $spamDetector->getHighlighted(true) . "\n\n";
     
     // Example 3: Training the model with new data
     echo "=== Training Examples ===\n";
@@ -47,7 +47,7 @@ try {
     ];
     
     foreach ($spamSamples as $spam) {
-        $spamDoctor->addTrainingSample($spam, true);
+        $spamDetector->addTrainingSample($spam, true);
         echo "Added spam sample: $spam\n";
     }
     
@@ -59,17 +59,17 @@ try {
     ];
     
     foreach ($hamSamples as $ham) {
-        $spamDoctor->addTrainingSample($ham, false);
+        $spamDetector->addTrainingSample($ham, false);
         echo "Added legitimate sample: $ham\n";
     }
     
     // Retrain the model
-    $spamDoctor->retrainModel();
+    $spamDetector->retrainModel();
     echo "Model retrained with new samples\n\n";
     
     // Example 4: Model statistics
     echo "=== Model Statistics ===\n";
-    $stats = $spamDoctor->getModelStats();
+    $stats = $spamDetector->getModelStats();
     foreach ($stats as $key => $value) {
         echo ucfirst(str_replace('_', ' ', $key)) . ": $value\n";
     }
@@ -78,15 +78,15 @@ try {
     // Example 5: Custom filter items
     echo "=== Custom Filter Items ===\n";
     $customSpamWords = ['cryptocurrency', 'bitcoin', 'investment opportunity'];
-    $spamDoctor->setFilterItems($customSpamWords);
+    $spamDetector->setFilterItems($customSpamWords);
     
     $testCrypto = "Amazing cryptocurrency investment opportunity! Buy bitcoin now!";
-    $spamDoctor->check($testCrypto);
+    $spamDetector->check($testCrypto);
     
     echo "Text: $testCrypto\n";
-    echo "Is Spam: " . ($spamDoctor->isSpam() ? 'YES' : 'NO') . "\n";
-    echo "Traditional Items Found: " . count($spamDoctor->getSpamItems()) . "\n";
-    print_r($spamDoctor->getSpamItems());
+    echo "Is Spam: " . ($spamDetector->isSpam() ? 'YES' : 'NO') . "\n";
+    echo "Traditional Items Found: " . count($spamDetector->getSpamItems()) . "\n";
+    print_r($spamDetector->getSpamItems());
     echo "\n";
     
     // Example 6: Teaching the doctor with JSON data
@@ -97,7 +97,7 @@ try {
         'free money'
     ]);
     
-    $learnedCount = $spamDoctor->teachDoctor($jsonTeachingData);
+    $learnedCount = $spamDetector->teachDoctor($jsonTeachingData);
     echo "Doctor learned $learnedCount new spam terms\n";
     
     // Example 7: Confidence threshold adjustment
@@ -107,12 +107,12 @@ try {
     // Test with different thresholds
     $thresholds = [0.3, 0.5, 0.7, 0.9];
     foreach ($thresholds as $threshold) {
-        $spamDoctor->setConfidenceThreshold($threshold);
-        $spamDoctor->check($borderlineSpam);
+        $spamDetector->setConfidenceThreshold($threshold);
+        $spamDetector->check($borderlineSpam);
         
         echo "Threshold: $threshold - ";
-        echo "Probability: " . round($spamDoctor->getSpamProbability() * 100, 2) . "% - ";
-        echo "Classification: " . ($spamDoctor->isSpam() ? 'SPAM' : 'HAM') . "\n";
+        echo "Probability: " . round($spamDetector->getSpamProbability() * 100, 2) . "% - ";
+        echo "Classification: " . ($spamDetector->isSpam() ? 'SPAM' : 'HAM') . "\n";
     }
     
     // === Custom Test: Store New Spam and Ham ===
@@ -121,14 +121,14 @@ try {
     $uniqueHam = "Let's meet for coffee at 10am tomorrow.";
 
     // Check and store spam
-    $spamDoctor->check($uniqueSpam);
+    $spamDetector->check($uniqueSpam);
     echo "Checked unique spam: \"$uniqueSpam\"\n";
-    echo "Is Spam: " . ($spamDoctor->isSpam() ? 'YES' : 'NO') . "\n";
+    echo "Is Spam: " . ($spamDetector->isSpam() ? 'YES' : 'NO') . "\n";
 
     // Check and store ham
-    $spamDoctor->check($uniqueHam);
+    $spamDetector->check($uniqueHam);
     echo "Checked unique ham: \"$uniqueHam\"\n";
-    echo "Is Spam: " . ($spamDoctor->isSpam() ? 'YES' : 'NO') . "\n";
+    echo "Is Spam: " . ($spamDetector->isSpam() ? 'YES' : 'NO') . "\n";
 
     // Now verify if they were stored
     $collectedSpam = file_get_contents(__DIR__ . '/data/collected_spam.txt');

@@ -49,7 +49,10 @@
         "This is a brand new spam offer just for you! Claim your secret prize now!",
         "Let's meet for coffee at 10am tomorrow.",
         "Congratulations! You have been selected to receive a 100% free gift. \r\nClick here to claim your $1000 cash bonus now! Act fast, limited time offer!",
-        "Congratulations! You have been selected to receive a 100% free gift."
+        "Congratulations! You have been selected to receive a 100% free gift.",
+        "Dear Valued User,\r\n\r\nOur records indicate your account (ID: #USR-5842-2023) qualifies for enhanced security features under our new \"Member Protection Initiative\".\r\n\r\n**Action Required:**\r\n1. Review your attached Q3 statement:\r\n[Secure Access](https:\/\/client-portal.net\/documents\/statement_Q3_${userID})\r\n2. Confirm your contact preferences\r\n\r\n**Key Details:**\r\n\u2022 New fraud protection threshold: $2,500\r\n\u2022 Extended dispute window: 120 days\r\n\u2022 Dedicated account manager\r\n\r\nNote: Unverified accounts will revert to basic protection after Dec 15. This is an automated notification\u2014please do not reply directly to this email.\r\n\r\nRegards,\r\nThe Client Services Team\r\n\r\nP.S. For security, always access your account through our official website.\r\n\r\n[Privacy Policy](https:\/\/client-support.net\/privacy) | [Unsubscribe](https:\/\/preferences.client-support.net\/optout)",
+        "Dear Valued User,\r\n\r\nOur records indicate your account (ID: #USR-5842-2023) qualifies for enhanced security features under our new \"Member Protection Initiative\".\r\n\r\n**Action Required:**\r\n1. Review your attached Q3 statement:\r\n[Secure Access](https:\/\/client-portal.net\/documents\/statement_Q3_${userID})\r\n2. Confirm your contact preferences\r\n\r\n**Key Details:**\r\n\u2022 New fraud protection threshold: $2,500\r\n\u2022 Extended dispute window: 120 days\r\n\u2022 Dedicated account manager\r\n\r\nNote: Unverified accounts will revert to basic protection after Dec 15. This is an automated notification\u2014please do not reply directly to this email.\r\n\r\nRegards,\r\nThe Client Services Team\r\n\r\nP.S. For security, always access your account through our official website.\r\n\r\n[Privacy Policy](https:\/\/client-support.net\/privacy) | [Unsubscribe](https:\/\/preferences.client-support.net\/optout)",
+        "Dear Valued User,\r\n\r\nOur records indicate your account (ID: #USR-5842-2023) qualifies for enhanced security features under our new \"Member Protection Initiative\".\r\n\r\n**Action Required:**\r\n1. Review your attached Q3 statement:\r\n[Secure Access](https:\/\/client-portal.net\/documents\/statement_Q3_${userID})\r\n2. Confirm your contact preferences\r\n\r\n**Key Details:**\r\n\u2022 New fraud protection threshold: $2,500\r\n\u2022 Extended dispute window: 120 days\r\n\u2022 Dedicated account manager\r\n\r\nNote: Unverified accounts will revert to basic protection after Dec 15. This is an automated notification\u2014please do not reply directly to this email.\r\n\r\nRegards,\r\nThe Client Services Team\r\n\r\nP.S. For security, always access your account through our official website.\r\n\r\n[Privacy Policy](https:\/\/client-support.net\/privacy) | [Unsubscribe](https:\/\/preferences.client-support.net\/optout)"
     ],
     "labels": [
         "spam",
@@ -96,6 +99,9 @@
         "ham",
         "ham",
         "ham",
+        "spam",
+        "spam",
+        "spam",
         "spam",
         "spam",
         "spam",

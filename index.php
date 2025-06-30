@@ -1,8 +1,8 @@
 <?php
 /**
- * Enhanced Spam Doctor Test Interface
+ * Enhanced Spam Detector Test Interface
  * 
- * This script provides a web interface to test the Enhanced Spam Doctor
+ * This script provides a web interface to test the Enhanced Spam Detector
  * with various messages and see real-time spam detection results.
  */
 
@@ -13,13 +13,13 @@ require_once __DIR__ . '/spamAIdetector/spamDetector.php';
 // Auto-load dependencies
 require_once 'vendor/autoload.php';
 
-// Import the Enhanced Spam Doctor class
+// Import the Enhanced Spam Detector class
 
 
-use JBTools\SpamDetector\EnhancedSpamDoctor;
+use JBTools\SpamDetector\EnhancedSpamDetector;
 
 // Initialize the spam detector
-$spamDoctor = new EnhancedSpamDoctor('naive_bayes');
+$spamDetector = new EnhancedSpamDetector('naive_bayes');
 
 // Test messages array
 $testMessages = [
@@ -60,24 +60,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         try {
             // Check the message
-            $spamDoctor->check($message, isset($_POST['is_html']));
+            $spamDetector->check($message, isset($_POST['is_html']));
             
             // Store results
             $results[] = [
                 'message' => $message,
-                'is_spam' => $spamDoctor->isSpam(),
-                'ml_probability' => $spamDoctor->getSpamProbability(),
-                'combined_score' => $spamDoctor->getSpamScore(),
-                'spam_items' => $spamDoctor->getSpamItems(),
-                'highlighted' => $spamDoctor->getHighlighted(),
+                'is_spam' => $spamDetector->isSpam(),
+                'ml_probability' => $spamDetector->getSpamProbability(),
+                'combined_score' => $spamDetector->getSpamScore(),
+                'spam_items' => $spamDetector->getSpamItems(),
+                'highlighted' => $spamDetector->getHighlighted(),
                 'is_manual' => true
             ];
             
             // If it's spam and user confirmed, add to training data
             if (isset($_POST['confirm_spam']) && $_POST['confirm_spam'] === 'yes') {
-                $spamDoctor->addTrainingSample($message, true);
+                $spamDetector->addTrainingSample($message, true);
             } elseif (isset($_POST['confirm_spam']) && $_POST['confirm_spam'] === 'no') {
-                $spamDoctor->addTrainingSample($message, false);
+                $spamDetector->addTrainingSample($message, false);
             }
             
         } catch (Exception $e) {
@@ -89,14 +89,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['bulk_test'])) {
         foreach ($testMessages as $testMsg) {
             try {
-                $spamDoctor->check($testMsg);
+                $spamDetector->check($testMsg);
                 $results[] = [
                     'message' => $testMsg,
-                    'is_spam' => $spamDoctor->isSpam(),
-                    'ml_probability' => $spamDoctor->getSpamProbability(),
-                    'combined_score' => $spamDoctor->getSpamScore(),
-                    'spam_items' => $spamDoctor->getSpamItems(),
-                    'highlighted' => $spamDoctor->getHighlighted(),
+                    'is_spam' => $spamDetector->isSpam(),
+                    'ml_probability' => $spamDetector->getSpamProbability(),
+                    'combined_score' => $spamDetector->getSpamScore(),
+                    'spam_items' => $spamDetector->getSpamItems(),
+                    'highlighted' => $spamDetector->getHighlighted(),
                     'is_manual' => false
                 ];
             } catch (Exception $e) {
@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Handle model retraining
     if (isset($_POST['retrain_model'])) {
         try {
-            $spamDoctor->retrainModel();
+            $spamDetector->retrainModel();
             $retrain_success = "Model retrained successfully!";
         } catch (Exception $e) {
             $retrain_error = "Error retraining model: " . $e->getMessage();
@@ -118,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Get model statistics
-$modelStats = $spamDoctor->getModelStats();
+$modelStats = $spamDetector->getModelStats();
 ?>
 
 <!DOCTYPE html>
@@ -126,7 +126,7 @@ $modelStats = $spamDoctor->getModelStats();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced Spam Doctor - Test Interface</title>
+    <title>Enhanced Spam Detector - Test Interface</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -309,7 +309,7 @@ $modelStats = $spamDoctor->getModelStats();
 </head>
 <body>
     <div class="container">
-        <h1>🛡️ Enhanced Spam Doctor Test Interface</h1>
+        <h1>🛡️ Enhanced Spam Detector Test Interface</h1>
         
         <!-- Model Statistics -->
         <div class="stats">
